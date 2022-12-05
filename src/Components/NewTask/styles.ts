@@ -18,7 +18,7 @@ export const Content = styled.div`
         align-self: left;
         padding:0 1.5rem;
         margin-right: 0.5rem;
-        border-radius: 0.75rem;
+        border-radius: 0.5rem;
         border:0;
         font-size: 1rem;
         background-color: var(--gray-500);
