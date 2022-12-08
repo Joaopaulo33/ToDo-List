@@ -21,13 +21,14 @@ export const Content = styled.div`
         border-radius: 0.5rem;
         border:0;
         font-size: 1rem;
+        color:white;
         background-color: var(--gray-500);
         &::placeholder{
             color:var(--gray-300);
         }
     }
 
-    a{
+    button{
         display: block;
         width: 5.625rem;
         height: 3.25rem;
@@ -41,7 +42,7 @@ export const Content = styled.div`
         align-items: center;
         justify-content: center;
         gap: 5px;
-        font-weight: bold;
+        /* font-weight: bold; */
         
         div{
             align-items: center;

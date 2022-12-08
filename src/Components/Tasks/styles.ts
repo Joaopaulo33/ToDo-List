@@ -13,12 +13,16 @@ export const Container =  styled.div`
         font-size: 0.875rem;
     }
 `
+export const TasksPlace = styled.div`
+    
+`
 
 export const Titles = styled.div`
     display: flex;
     width: 100%;
     justify-content: space-between;
     margin:0 auto;
+    margin-bottom:1.5rem;
 `
 export const CreatedTasksTitle = styled.span`
     color:var(--blue);

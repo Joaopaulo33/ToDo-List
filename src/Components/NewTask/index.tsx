@@ -1,16 +1,32 @@
 import { Container, Content } from "./styles";
-import {PlusCircle} from 'phosphor-react'
+import { PlusCircle, Target } from "phosphor-react";
+import { useTasks } from "../../hooks/useTasks";
+import { useState } from "react";
 
-export function NewTask(){
-    return(
-        <Container>
-            <Content>
-                <input type="text" placeholder="Adicione uma nova tarefa" />
-                <a href="#">
-                    Criar   
-                    <PlusCircle size={18} />
-                </a>
-            </Content>
-        </Container>
-    )
+export function NewTask() {
+  const { createTask, tasks } = useTasks();
+  const [description, setDescription] = useState("");
+
+  function HandleCreateTask() {
+    createTask(description);
+    setDescription("");
+  }
+
+  return (
+    <Container>
+      <Content>
+        <input
+          type="text"
+          name="input_task"
+          placeholder="Adicione uma nova tarefa"
+          onChange={(event) => setDescription(event.target.value)}
+          value={description}
+        />
+        <button onClick={HandleCreateTask}>
+          Criar
+          <PlusCircle size={18} />
+        </button>
+      </Content>
+    </Container>
+  );
 }
