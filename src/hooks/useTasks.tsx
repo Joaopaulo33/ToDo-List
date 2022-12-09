@@ -7,7 +7,7 @@ interface Task {
   isCompleted: boolean;
 }
 
-type TaskInput = Pick<Task, "description">;
+// type TaskInput = Pick<Task, "description">;
 
 interface TasksProviderProps {
   children: ReactNode;
@@ -16,11 +16,22 @@ interface TasksProviderProps {
 interface TasksContextData {
   tasks: Task[];
   createTask: (Task: string) => void;
+  setCompletedTask: (AmountCompletedTask: number) => void;
+  setAmountTasks: (AmountTasks: number) => void;
+  amountTasks: number;
+  amountTasksCompleted: number;
+  deleteTaskById: (taskId: string) => void;
 }
 const TasksContext = createContext<TasksContextData>({} as TasksContextData);
 
 export function TasksProvider({ children }: TasksProviderProps) {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [amountTasks, setAmountTasks] = useState(0);
+  const [amountTasksCompleted, setAmountTasksCompleted] = useState(0);
+
+  function setCompletedTask(amountCompletedTask: number) {
+    setAmountTasksCompleted(amountCompletedTask);
+  }
 
   function createTask(taskInput: string) {
     const newTask: Task = {
@@ -29,10 +40,26 @@ export function TasksProvider({ children }: TasksProviderProps) {
       isCompleted: false,
     };
     setTasks([...tasks, newTask]);
+    setAmountTasks(amountTasks + 1);
+  }
+
+  function deleteTaskById(taskId: string) {
+    let newTaks = tasks.filter((task) => task.id != taskId);
+    setTasks(newTaks);
   }
 
   return (
-    <TasksContext.Provider value={{ tasks, createTask }}>
+    <TasksContext.Provider
+      value={{
+        setAmountTasks,
+        setCompletedTask,
+        amountTasks,
+        amountTasksCompleted,
+        tasks,
+        createTask,
+        deleteTaskById,
+      }}
+    >
       {children}
     </TasksContext.Provider>
   );

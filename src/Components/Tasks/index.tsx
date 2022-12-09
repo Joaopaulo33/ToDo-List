@@ -13,21 +13,23 @@ import {
 } from "./styles";
 
 export function Tasks() {
-  const { tasks } = useTasks();
-  console.log(tasks);
+  const { tasks, amountTasks, amountTasksCompleted } = useTasks();
 
   const existTasks = true;
   return (
     <Container>
       <Titles>
         <CreatedTasksTitle>
-          Tarefas criadas <AmountNumber>0</AmountNumber>
+          Tarefas criadas <AmountNumber>{amountTasks}</AmountNumber>
         </CreatedTasksTitle>
         <ConcludeTasksTitle>
-          Concluídas <AmountNumber>2 de 5</AmountNumber>
+          Concluídas{" "}
+          <AmountNumber>
+            {amountTasksCompleted} de {amountTasks}
+          </AmountNumber>
         </ConcludeTasksTitle>
       </Titles>
-      {!existTasks ? (
+      {!amountTasks ? (
         <ContentEmpty>
           <Icon>
             <ClipboardText size="56" />
@@ -37,7 +39,14 @@ export function Tasks() {
         </ContentEmpty>
       ) : (
         tasks.map((task) => {
-          return <Task key={task.id} description={task.description} />;
+          return (
+            <Task
+              key={task.id}
+              description={task.description}
+              id={task.id}
+              isCompleted={task.isCompleted}
+            />
+          );
         })
       )}
     </Container>

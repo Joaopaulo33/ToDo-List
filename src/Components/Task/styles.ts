@@ -11,6 +11,7 @@ export const Container = styled.div`
     button{
         background: transparent;
         border:none;
+        color:inherit;
     }
 `
 
@@ -23,16 +24,17 @@ export const CheckBox= styled.div`
 `
 
 export const IconCompleted = styled.div`
+    height: 15.4px;
     color: var(--purple);
     margin-right: 1rem;
-
+    background-color: white;
+    border-radius: 200rem;
 `
 export const Description = styled.p`
     font-size: 13px;
     font-weight:normal;
     max-width: 38.5rem;
     color: var(--gray-100);
-
 `
 
 export const IconTrash = styled.div`

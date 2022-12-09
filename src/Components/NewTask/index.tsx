@@ -4,12 +4,13 @@ import { useTasks } from "../../hooks/useTasks";
 import { useState } from "react";
 
 export function NewTask() {
-  const { createTask, tasks } = useTasks();
+  const { createTask, tasks, amountTasks } = useTasks();
   const [description, setDescription] = useState("");
 
   function HandleCreateTask() {
     createTask(description);
     setDescription("");
+    // amountTasks;
   }
 
   return (
